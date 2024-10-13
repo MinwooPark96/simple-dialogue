@@ -2,6 +2,9 @@
 
 
 #### 1. **Implement the TODO section of the function. Please do not modify the other parts.**
+
+Every fuction you need to implement is in `task[i]/core.py`.
+
 #### 2. **Please note that this file is intended to be run and graded on Google Colab. Running it on a personal server or locally may yield results that differ from those on Google Colab, which could affect your score.**
 
 #### Environment Setting
