@@ -20,30 +20,24 @@ def calculate_rouge_n(prediction, ground_truth, N):
 
     ################################################
     # TODO
-    # Filter out non-alphanumeric characters from the prediction and ground_truth strings, leaving only word characters (letters, digits, and underscores) and whitespace
     prediction = re.sub(r'\W+', ' ', prediction).lower().strip()
     ground_truth = re.sub(r'\W+', ' ', ground_truth).lower().strip()
 
-    # Create n-grams for ground truth
     gt_tokens = ground_truth.split()
     gt_n_grams = [' '.join(gt_tokens[i:i + N]) for i in range(len(gt_tokens) - N + 1)]
 
-    # Create n-grams for prediction
     pred_tokens = prediction.split()
     pred_n_grams = [' '.join(pred_tokens[i:i + N]) for i in range(len(pred_tokens) - N + 1)]
 
-    # Calculate recall
+    # recall
     overlap = len([ngram for ngram in pred_n_grams if ngram in gt_n_grams])
-    recall = overlap / len(gt_n_grams) if len(gt_n_grams) > 0 else 0.0
+    recall = overlap / len(gt_n_grams) if len(gt_n_grams) > 0 else 0
 
-    # Calculate precision
-    precision = overlap / len(pred_n_grams) if len(pred_n_grams) > 0 else 0.0
+    # precision
+    precision = overlap / len(pred_n_grams) if len(pred_n_grams) > 0 else 0
 
-    # Calculate ROUGE-N score
-    if recall + precision == 0:
-        rouge = 0.0
-    else:
-        rouge = 2 * (precision * recall) / (precision + recall)
+    # ROUGE-N score
+    rouge = 0 if abs(recall + precision) <= 1e-16 else 2 * (precision * recall) / (precision + recall)
     ################################################
 
     return rouge

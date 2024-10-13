@@ -156,11 +156,11 @@ def calculate_loss(logits:torch.Tensor,
     # TODO
 
     loss_fn = torch.nn.CrossEntropyLoss()
-
-    logits = logits[:, :-1, :]  
-    labels = input_ids[:, 1:]  
-    
+    logits = logits[:, :-1, :]
     logits = logits.reshape(-1, logits.shape[2]).to(device) 
-    labels = labels.reshape(-1).to(device)             
+    labels = input_ids[:, 1:].reshape(-1).to(device)             
+    
+    loss = loss_fn(logits, labels)
+    ############################################
 
-    return loss_fn(logits, labels)
+    return loss

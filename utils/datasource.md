@@ -1,4 +1,4 @@
-!pip install transformers==4.45.1 -U
+`!pip install transformers==4.45.1 -U`
 
 # Download the DailyDialog dataset
 !wget https://www.dropbox.com/scl/fi/ai4je7bp3difjeuyk3a8s/dailydialog.json?rlkey=fe6pm2iz7nsb5fwulsjch5qzy -O dailydialog.json
